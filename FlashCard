@@ -4,6 +4,9 @@ public class FlashCard {
 	String name;
 	String desc;
 	
+	int right = 0;  // tracks right and wrong answers
+	int wrong = 0;
+	
 	FlashCard backup = new FlashCard();
 	/**********************************
 	 * STORES INFO
@@ -43,4 +46,17 @@ public class FlashCard {
 		backup.bDesc(desc);
 	}
 	/********************/
+	
+	/*
+	 * Compare String parameter to name true if they're the same
+	 */
+	 public boolean compareName(String guess){
+ 		boolean answer = name.equalsIgnoreCase(guess);
+ 		if(answer){
+ 			right++;
+ 			return answer;
+ 		}
+ 		wrong++;
+	 	return false;
+	 }
 }
