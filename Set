@@ -1,0 +1,77 @@
+import javax.swing.*;
+import java.util.Random;
+
+public class Set {
+	int size;
+	
+	FlashCard[] deck;
+	
+	public Set(int pSize){
+		size = pSize;
+		deck = new FlashCard[size];
+	}
+	
+	public void makeSet(){
+		for(int i = 0; i < size; i++){
+            String str = JOptionPane.showInputDialog("Enter the name of the flashcard.");
+			deck[i].setName(str);
+			str = JOptionPane.showInputDialog("Enter the description.");
+			deck[i].setDesc(str);
+		}
+	}
+	
+	/*
+	 * Shuffles set
+	 */
+	public void shuffle(){
+		FlashCard temp = new FlashCard();
+		int place;
+		Random rnd = new Random();
+		
+		for(int i = 0; i < size; i++){
+			place = rnd.nextInt(size);
+						temp = deck[place];
+			deck[place] = deck[i];
+			deck[i] = temp;
+		}
+	}
+	
+	/*
+	 * alphabetize set using bubble sort
+	 */
+	public void alphabetize(){
+		FlashCard temp = new FlashCard();
+		for(int i = 0; i < size - 1; i++){
+			if(decideSwitch(deck[i].getName(), deck[i+1].getName())){
+				temp = deck[i];
+				deck[i] = deck[i+1];
+				deck[i+1] = temp;
+				i = 0;
+			}
+		}
+	}
+	
+	/*
+	 * helper for alphabetize
+	 */
+	private boolean decideSwitch(String str1, String str2){
+		int test = str1.length();
+		if(test > str2.length())			
+		  test = str2.length();
+		str1 = str1.toLowerCase();
+		str2 = str2.toLowerCase();
+		for(int i = 0; i < test; i++){
+			if(str1.charAt(i) > str2.charAt(i)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/*
+	 * returns card requested
+	 */
+	public FlashCard getCard(int i){
+		return deck[i];
+	}
+}
