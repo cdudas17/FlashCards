@@ -1,0 +1,46 @@
+@@ -0,0 +1,45 @@
+
+public class FlashCard {
+	String name;
+	String desc;
+	
+	FlashCard backup = new FlashCard();
+	/**********************************
+	 * STORES INFO
+	 */
+	
+	/*accesor methods*/
+	public String getName(){
+		return name;
+	}
+	
+	public String getDesc(){
+		return desc;
+	}
+	
+	/*Mutator mathods*/
+	public void setName(String pName){
+		name = pName;
+		this.backup();
+	}
+	
+	public void setDesc(String pDesc){
+		desc = pDesc;
+		this.backup();
+	}
+	
+	/*BACKUP*/
+	private void bName(String pName){
+		name = pName;
+	}
+	
+	private void bDesc(String pDesc){
+		desc = pDesc;
+	}
+	
+	public void backup(){
+		backup.bName(name);
+		backup.bDesc(desc);
+	}
+	/********************/
+}
