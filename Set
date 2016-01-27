@@ -2,18 +2,36 @@ import javax.swing.*;
 import java.util.Random;
 
 public class Set {
-	int size;
+	private int size;
+	private String setName;
 	
 	FlashCard[] deck;
 	
-	public Set(int pSize){
+	public Set(int pSize, String pName){
+		setName = pName;
 		size = pSize;
 		deck = new FlashCard[size];
 	}
 	
+	public Set(Object other){
+		setName = Object.getName();
+		size = Object.getSize();
+	}
+	
+	/*
+	 * getters
+	 */
+	 public String getName(){
+	 	return setName;
+	 }
+	 
+	 public int getSize(){
+	 	return size;
+	 }
+	
 	public void makeSet(){
 		for(int i = 0; i < size; i++){
-            String str = JOptionPane.showInputDialog("Enter the name of the flashcard.");
+            		String str = JOptionPane.showInputDialog("Enter the name of the flashcard.");
 			deck[i].setName(str);
 			str = JOptionPane.showInputDialog("Enter the description.");
 			deck[i].setDesc(str);
